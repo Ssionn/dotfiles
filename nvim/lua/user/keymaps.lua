@@ -38,11 +38,6 @@ vim.keymap.set('n', '<leader>x', ':!xdg-open %<cr><cr>')
 vim.keymap.set('n', 'q:', ':q<CR>')
 
 -- Resize with arrows.
-vim.keymap.set('n', '<C-Up>', ':resize +2<CR>')
-vim.keymap.set('n', '<C-Down>', ':resize -2<CR>')
-vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>')
-vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>')
-
 vim.keymap.set('n', '<Space>w', ':Bdelete<CR>', { noremap = true, })
 
 -- Move text up and down
