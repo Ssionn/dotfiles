@@ -1,0 +1,1 @@
+/Users/casperkizewski/dotfiles/nvim/user/options.lua
