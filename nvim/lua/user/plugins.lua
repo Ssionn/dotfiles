@@ -110,6 +110,7 @@ use({
         'kyazdani42/nvim-web-devicons',
         'BurntSushi/ripgrep',
         'sharkdp/fd',
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     },
 })
 
