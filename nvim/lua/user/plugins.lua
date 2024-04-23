@@ -110,9 +110,11 @@ use({
         'kyazdani42/nvim-web-devicons',
         'BurntSushi/ripgrep',
         'sharkdp/fd',
-        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     },
 })
+
+use { "LinArcX/telescope-env.nvim" }
 
 use {
   'nvim-tree/nvim-tree.lua',
