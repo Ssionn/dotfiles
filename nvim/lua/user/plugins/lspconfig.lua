@@ -10,8 +10,6 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
  -- Vue, JavaScript, TypeScript
  require('lspconfig').volar.setup({
      capabilities = capabilities,
-   -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
-   -- This drastically improves the responsiveness of diagnostic updates on change
    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
  })
 

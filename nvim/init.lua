@@ -1,5 +1,6 @@
-require('user/plugins')
-require('user/plugins/nvim-tree')
-require('user/plugins/telescope')
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require('user/options')
+require('user/plugins')
 require('user/keymaps')

@@ -107,21 +107,30 @@ use({
     tag = '0.1.x',
     requires = {
         'nvim-lua/plenary.nvim',
-        'kyazdani42/nvim-web-devicons',
         'BurntSushi/ripgrep',
         'sharkdp/fd',
         { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+        'LinArcX/telescope-env.nvim',
     },
+    config = function ()
+        require('user/plugins/telescope')
+    end,
 })
 
-use { "LinArcX/telescope-env.nvim" }
+use({
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+        'kyazdani42/nvim-web-devicons',
+    },
+    config = function ()
+        require('user/plugins/nvim-tree')
+    end,
+    lazy = true
+})
 
-use {
-  'nvim-tree/nvim-tree.lua',
-  requires = {
-    'nvim-tree/nvim-web-devicons', -- optional
-  },
-}
+use({
+    'dstein64/vim-startuptime'
+})
 
 use({
    'nvim-lualine/lualine.nvim',

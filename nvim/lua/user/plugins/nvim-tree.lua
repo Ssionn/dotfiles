@@ -7,17 +7,30 @@ require("nvim-tree").setup({
     side = "right",
   },
   git = {
-    enable = false,
+    enable = true,
+  },
+  filesystem_watchers = {
+    enable = true,
+    debounce_delay = 50,
+    ignore_dirs = {
+      "node_modules",
+      "vendor"
+    },
   },
   renderer = {
-    group_empty = true,
-  },
+        highlight_git = true,
+        icons = {
+        show = {
+          git = true,
+        },
+    },
+},
   filters = {
     dotfiles = false,
   }, 
 })
 
-vim.api.nvim_set_keymap('n', '<Space>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>co', ':NvimTreeCollapse<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>r', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>fl', ':NvimTreeFindFileToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Space>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Space>co', ':NvimTreeCollapse<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Space>r', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Space>fl', ':NvimTreeFindFileToggle<CR>', { noremap = true, silent = true })

@@ -1,6 +1,3 @@
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.opt.signcolumn = 'yes:2'
 
 vim.opt.completeopt = 'menuone,longest,preview'
@@ -25,6 +22,8 @@ vim.opt.mouse = 'a'
 vim.opt.spell = true
 
 vim.opt.termguicolors = true
+
+vim.opt.updatetime = 300
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
