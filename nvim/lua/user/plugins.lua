@@ -107,6 +107,7 @@ use({
     tag = '0.1.x',
     requires = {
         'nvim-lua/plenary.nvim',
+        'kyazdani42/nvim-web-devicons',
         'BurntSushi/ripgrep',
         'sharkdp/fd',
         { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
@@ -128,6 +129,8 @@ use({
     lazy = true
 })
 
+use {'edluffy/hologram.nvim'}
+
 use({
     'dstein64/vim-startuptime'
 })
@@ -148,17 +151,35 @@ use({
    end,
  })
 
- use({
-   'jessarcher/onedark.nvim',
-   config = function()
-     vim.cmd('colorscheme onedark')
+ -- use({
+ --   'jessarcher/onedark.nvim',
+ --   config = function()
+ --     vim.cmd('colorscheme onedark')
 
-     vim.api.nvim_set_hl(0, 'FloatBorder', {
-       fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-       bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-     })
-   end,
- })
+ --     vim.api.nvim_set_hl(0, 'FloatBorder', {
+ --       fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+ --       bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+ --     })
+ --   end,
+ -- })
+ 
+use({
+  'projekt0n/github-nvim-theme',
+  config = function()
+    require('github-theme').setup({
+      -- ...
+    })
+
+    vim.cmd('colorscheme github_light_default')
+  end
+})
+
+use ({
+  "FabijanZulj/blame.nvim",
+  config = function()
+    require("blame").setup()
+  end
+})
 
  use({
    'neovim/nvim-lspconfig',
@@ -173,7 +194,7 @@ use({
  })
 
 use({
-    'sbdchd/neoformat'
+    'sbdchd/neoformat',
 })
 
  use({
@@ -234,3 +255,4 @@ vim.cmd([[
     autocmd BufWritePost plugins.lua source <afile>
     augroup end
 ]])
+

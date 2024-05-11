@@ -1,12 +1,13 @@
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'material',
+    theme = 'ayu_light',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
       statusline = {
-        'packer', 'NvimTree'
+        'packer', 'NvimTree', 'blame'
+
       },
       winbar = {},
     },

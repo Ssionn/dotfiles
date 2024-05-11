@@ -9,6 +9,27 @@ vim.opt.softtabstop = 4
 
 vim.opt.smartindent = true
 
+_G.add_new_line = function()
+  local file_name = vim.fn.expand('%:t')
+
+  if file_name:match("%.blade%.php$") then
+    return
+  end
+
+  local n_lines = vim.api.nvim_buf_line_count(0)
+  local last_nonblank = vim.fn.prevnonblank(n_lines)
+  if last_nonblank <= n_lines then 
+    vim.api.nvim_buf_set_lines(0, last_nonblank, n_lines, true, { '' }) 
+  end
+end
+
+vim.cmd([[
+  augroup AddNewlineOnSave
+    autocmd!
+    autocmd BufWritePre * lua _G.add_new_line()
+  augroup END
+]])
+
 vim.opt.wrap = false
 
 vim.opt.number = true
@@ -59,3 +80,4 @@ vim.cmd([[
     :hi      NvimTreeSymlink     guifg=White  gui=italic
     :hi link NvimTreeImageFile   Title
 ]])
+
