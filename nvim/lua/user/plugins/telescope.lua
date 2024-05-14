@@ -41,10 +41,9 @@ telescope.setup({
 })
 
 require('telescope').load_extension('fzf')
-require('telescope').load_extension('env')
 
 vim.api.nvim_set_keymap('n', '<Space>ff', ':lua require("telescope.builtin").find_files{}<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fg', ':lua require("telescope.builtin").live_grep{}<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fb', ':lua require("telescope.builtin").buffers{}<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fh', ':lua require("telescope.builtin").help_tags{}<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>env', ':Telescope env<CR>', { noremap = true, silent = true })
+

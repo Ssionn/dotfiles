@@ -1,4 +1,10 @@
 require("nvim-tree").setup({
+  auto_reload_on_write = true,
+  disable_netrw = false,
+  hijack_netrw = true,
+  open_on_tab = false,
+  hijack_cursor = false,
+  update_cwd = false,
   sort = {
     sorter = "case_sensitive",
   },
@@ -34,3 +40,4 @@ vim.keymap.set('n', '<Space>e', ':NvimTreeToggle<CR>', { noremap = true, silent 
 vim.keymap.set('n', '<Space>co', ':NvimTreeCollapse<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<Space>r', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<Space>fl', ':NvimTreeFindFileToggle<CR>', { noremap = true, silent = true })
+

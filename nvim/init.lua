@@ -4,3 +4,4 @@ vim.g.loaded_netrwPlugin = 1
 require('user/options')
 require('user/plugins')
 require('user/keymaps')
+
