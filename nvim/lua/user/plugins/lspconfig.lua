@@ -1,8 +1,22 @@
 -- Setup Mason to automatically install LSP servers
  require('mason').setup()
  require('mason-lspconfig').setup({ automatic_installation = true })
+ local util = require "lspconfig/util"
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+require('lspconfig').rust_analyzer.setup({
+    capabilities = capabilities,
+    filetypes = {"rust"},
+    root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
+    settings = {
+        ['rust-analyzer'] = {
+            cargo = {
+                allFeatures = true,
+            },
+        },
+    },
+})
 
  -- PHP
  require('lspconfig').intelephense.setup({})
@@ -51,3 +65,4 @@ vim.api.nvim_command("command! Format lua vim.lsp.buf.formatting()")
  vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
  vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
  vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+

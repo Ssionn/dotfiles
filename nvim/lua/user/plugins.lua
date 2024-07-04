@@ -94,7 +94,6 @@ use({
    end,
    requires = {
      'JoosepAlviste/nvim-ts-context-commentstring',
-     'nvim-treesitter/nvim-treesitter-textobjects',
    },
    config = function()
      require('user/plugins/treesitter')
@@ -169,7 +168,7 @@ use({
       -- ...
     })
 
-    vim.cmd('colorscheme github_light_default')
+    vim.cmd('colorscheme github_dark')
   end
 })
 

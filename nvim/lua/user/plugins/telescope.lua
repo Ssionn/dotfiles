@@ -6,12 +6,18 @@ local builtin = require('telescope.builtin')
 -- Telescope setup
 telescope.setup({
     defaults = {
-        path_display = { truncate = 1 },
-        prompt_prefix = '🔍 ',
-        selection_caret = '⮕  ',
+        prompt_prefix = ' 🔍 ',
+        selection_caret = ' ⮕  ',
         layout_strategy = "horizontal",
+        layout_config = {
+          horizontal = {
+            width = 0.5,
+            height = 1,
+            preview_width = 0.75,
+          },
+        },
         winblend = 0,
-        file_ignore_patterns = { "/vendor/", "vendor/", "^vendor/", ".git/", "/.git/", "^.git/", "public/", "/public/", "^public/" },
+        file_ignore_patterns = { "./vendor/", "vendor/", "^vendor/", ".git/", "/.git/", "^.git/", "public/", "/public/", "^public/", "%.svg" },
         layout_config = {
             prompt_position = 'top',
         },
@@ -21,7 +27,7 @@ telescope.setup({
         find_files = {
             files = true,
             hidden = true,
-            theme = "dropdown",
+            -- theme = "dropdown",
         },
         buffers = {
             previewer = false,
@@ -35,7 +41,7 @@ telescope.setup({
           fuzzy = true,                    -- false will only do exact matching
           override_generic_sorter = true,  -- override the generic sorter
           override_file_sorter = true,     -- override the file sorter
-          case_mode = "ignore_case",        -- or "ignore_case" or "respect_case"                -- the default case_mode is "smart_case"
+          case_mode = "smart_case",        -- or "ignore_case" or "respect_case"                -- the default case_mode is "smart_case"
         }
     },
 })

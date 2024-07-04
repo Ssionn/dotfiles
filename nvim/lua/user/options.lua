@@ -1,3 +1,5 @@
+vim.opt.guifont = "Monaspace Krypton Wide:h15"
+
 vim.opt.signcolumn = 'yes:2'
 
 vim.opt.completeopt = 'menuone,longest,preview'
@@ -11,11 +13,20 @@ vim.opt.smartindent = true
 
 _G.add_new_line = function()
   local file_name = vim.fn.expand('%:t')
-
-  if file_name:match("%.blade%.php$") then
-    return
+  local file_extension = vim.fn.expand('%:e')
+  
+  -- List of file extensions to exclude
+  local excluded_extensions = {
+    'php', 'rs', 'js', 'blade.php', 'lua', 'html', 'env', 'env.example', 'gitignore', 'tsx', 'ts', 'jsx', "json"
+  }
+  
+  -- Check if the file extension is in the excluded list
+  for _, ext in ipairs(excluded_extensions) do
+    if file_extension == ext or file_name:match("%." .. ext .. "$") then
+      return
+    end
   end
-
+  
   local n_lines = vim.api.nvim_buf_line_count(0)
   local last_nonblank = vim.fn.prevnonblank(n_lines)
   if last_nonblank <= n_lines then 
@@ -24,7 +35,7 @@ _G.add_new_line = function()
 end
 
 vim.cmd([[
-  augroup AddNewlineOnSave
+  augroup CustomSaveActions
     autocmd!
     autocmd BufWritePre * lua _G.add_new_line()
   augroup END
@@ -80,4 +91,3 @@ vim.cmd([[
     :hi      NvimTreeSymlink     guifg=White  gui=italic
     :hi link NvimTreeImageFile   Title
 ]])
-
