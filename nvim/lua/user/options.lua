@@ -91,3 +91,6 @@ vim.cmd([[
     :hi      NvimTreeSymlink     guifg=White  gui=italic
     :hi link NvimTreeImageFile   Title
 ]])
+
+-- Bind Shift+K to show coc.nvim's hover documentation
+vim.api.nvim_set_keymap("n", "K", "<CMD>call CocActionAsync('doHover')<CR>", {silent = true, noremap = true})
