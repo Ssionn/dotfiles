@@ -50,26 +50,12 @@ vim.keymap.set('n', '<Space>w', ':Bdelete<CR>', { noremap = true, })
 --
 local keyset = vim.keymap.set
 
--- Use Tab for snippet expansion and navigation
 keyset("i", "<TAB>", [[coc#pum#visible() ? coc#pum#next(1) : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<TAB>"]], {silent = true, noremap = true, expr = true, replace_keycodes = false})
-
--- Use Shift-Tab to navigate backwards
 keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], {silent = true, noremap = true, expr = true, replace_keycodes = false})
-
--- Use Enter to confirm completion
 keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], {silent = true, noremap = true, expr = true, replace_keycodes = false})
-
--- Make <CR> to accept selected completion item or notify coc.nvim to format
--- <C-g>u breaks current undo, please make your own choice
-keyset("i", "<cr>", [[coc#pum#visible() ? coc#_select_confirm() : "\<CR>"]], {silent = true, noremap = true, expr = true, replace_keycodes = false})
+-- keyset("i", "<cr>", [[coc#pum#visible() ? coc#_select_confirm() : "\<CR>"]], {silent = true, noremap = true, expr = true, replace_keycodes = false})
 
 vim.api.nvim_set_keymap("n", "gd", "<Plug>(coc-definition)", {silent = true})
-
--- Go to type definition
 vim.api.nvim_set_keymap("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
-
--- Go to implementation
 vim.api.nvim_set_keymap("n", "gi", "<Plug>(coc-implementation)", {silent = true})
-
--- Go to references
 vim.api.nvim_set_keymap("n", "gr", "<Plug>(coc-references)", {silent = true})
