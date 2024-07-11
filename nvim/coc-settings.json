@@ -1,7 +1,8 @@
 {
   "hover.floatConfig": {
     "border": true,
-    "rounded": true
+    "rounded": true,
   },
+  "snippets.ultisnips.pythonPrompt": false,
 }
 
