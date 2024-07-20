@@ -1,15 +1,22 @@
-font_family Monaspace Krypton
+font_family MonaspaceKrypton-WideRegular
+bold_font MonaspaceKrypton-WideBold
+italic_font MonaspaceKrypton-WideItalic
+bold_italic_font MonaspaceKrypton-WideBoldItalic
 
-font_size 15
-adjust_line_height 175%
+font_size 9
+adjust_line_height 125%
 
 cursor_blink_interval 0
-enable_audio_bell 0
+window_padding_width 10
 hide_window_decorations yes
-window_padding_width 20
-
+wayland_titlebar_color background
+remember_window_size yes
+initial_window_width 1536
+initial_window_height 864
+enable_audio_bell no
 
 # BEGIN_KITTY_THEME
 # One Dark
 include current-theme.conf
 # END_KITTY_THEME
+

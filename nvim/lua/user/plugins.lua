@@ -27,7 +27,6 @@ use 'wbthomason/packer.nvim'
 -- My plugins here
 use('tpope/vim-commentary')
 use('tpope/vim-surround')
-use('tpope/vim-eunuch')
 use('tpope/vim-unimpaired')
 use('tpope/vim-sleuth')
 use('tpope/vim-repeat')
@@ -38,23 +37,6 @@ use('jessarcher/vim-heritage')
 use({
     'whatyouhide/vim-textobj-xmlattr',
     requires = 'kana/vim-textobj-user',
-})
-
--- use({
---     'airblade/vim-rooter',
---     setup = function()
---         vim.g.rooter_manual_only = 1
---     end,
---     config = function()
---         vim.cmd('rooter')
---     end,
--- })
-
-use({
-    'windwp/nvim-autopairs',
-    config = function()
-        require('nvim-autopairs').setup()
-    end,
 })
 
 use({
@@ -149,6 +131,8 @@ use({
    end,
  })
 
+ -- use this if you want the onedark theme.
+ 
  -- use({
  --   'jessarcher/onedark.nvim',
  --   config = function()
@@ -168,7 +152,7 @@ use({
       -- ...
     })
 
-    vim.cmd('colorscheme github_dark')
+    vim.cmd('colorscheme github_dark_dimmed')
   end
 })
 
@@ -179,37 +163,9 @@ use ({
   end
 })
 
- -- use({
- --   'neovim/nvim-lspconfig',
- --   requires = {
- --     'williamboman/mason.nvim',
- --     'williamboman/mason-lspconfig.nvim',
- --     'b0o/schemastore.nvim',
- --   },
- --   config = function()
- --     require('user/plugins/lspconfig')
- --   end,
- -- })
-
 use({
     'sbdchd/neoformat',
 })
-
- -- use({
- --   'hrsh7th/nvim-cmp',
- --   requires = {
- --     'hrsh7th/cmp-nvim-lsp',
- --     'hrsh7th/cmp-nvim-lsp-signature-help',
- --     'hrsh7th/cmp-buffer',
- --     'hrsh7th/cmp-path',
- --     'L3MON4D3/LuaSnip',
- --     'saadparwaiz1/cmp_luasnip',
- --     'onsails/lspkind-nvim',
- --   },
- --   config = function()
- --     require('user/plugins/cmp')
- --   end,
- -- })
 
  use {
     'neoclide/coc.nvim',
@@ -219,7 +175,8 @@ use({
         vim.g.coc_global_extensions = {
           'coc-json',
           'coc-phpls',
-          -- Add other extensions you need
+          'coc-blade',
+          'coc-lua',
         }
     end
 }
