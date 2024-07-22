@@ -2,6 +2,9 @@
 
 This repository contains my personal Neovim configuration, optimized for use with the Kitty terminal emulator. It provides a powerful, customized development environment for various programming languages.
 
+![image](https://github.com/user-attachments/assets/3ce15477-51f3-4fa1-b2c0-8a9eb46dfa0f)
+
+
 ---
 
 ### Prerequisites
