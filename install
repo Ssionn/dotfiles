@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# This script sets up Neovim and related tools on various Linux distributions, macOS, or WSL.
+# It creates symlinks for config files, runs Neovim package management, and installs dependencies.
+
 # Get the directory of the script
 DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
