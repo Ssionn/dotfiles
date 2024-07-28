@@ -115,21 +115,37 @@ use({
     'dstein64/vim-startuptime'
 })
 
-use({
-   'nvim-lualine/lualine.nvim',
-   requires = 'kyazdani42/nvim-web-devicons',
-   config = function()
-     require('user/plugins/lualine')
-   end,
- })
+-- choice between lualine and feline.
+
+-- use({
+--    'nvim-lualine/lualine.nvim',
+--    requires = 'kyazdani42/nvim-web-devicons',
+--    config = function()
+--      require('user/plugins/lualine')
+--    end,
+--  })
 
 use({
-   'akinsho/bufferline.nvim',
-   requires = 'kyazdani42/nvim-web-devicons',
-   config = function()
-     require('user/plugins/bufferline')
-   end,
- })
+    'feline-nvim/feline.nvim',
+    config = function ()
+        require('user/plugins/feline')
+    end
+})
+
+-- use({
+--    'akinsho/bufferline.nvim',
+--    requires = 'kyazdani42/nvim-web-devicons',
+--    config = function()
+--      require('user/plugins/bufferline')
+--    end,
+--  })
+
+use ({
+    'romgrk/barbar.nvim',
+    config = function ()
+        require('user/plugins/barbar')
+    end
+})
 
  -- use this if you want the onedark theme.
  
