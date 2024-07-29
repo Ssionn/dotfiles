@@ -98,6 +98,17 @@ use({
     end,
 })
 
+use({
+    'folke/noice.nvim',
+    config = function ()
+        require('user/plugins/noice')
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
+})
+
 -- use({
 --     'kyazdani42/nvim-tree.lua',
 --     requires = {
@@ -113,13 +124,6 @@ use({
     'kevinhwang91/rnvimr',
     config = function ()
         require('user/plugins/rnvimr')
-    end
-})
-
-use({
-    'edluffy/hologram.nvim',
-    config = function()
-      require('user/plugins/hologram')
     end
 })
 
