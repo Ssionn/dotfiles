@@ -98,18 +98,30 @@ use({
     end,
 })
 
+-- use({
+--     'kyazdani42/nvim-tree.lua',
+--     requires = {
+--         'kyazdani42/nvim-web-devicons',
+--     },
+--     config = function ()
+--         require('user/plugins/nvim-tree')
+--     end,
+--     lazy = true
+-- })
+
 use({
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-        'kyazdani42/nvim-web-devicons',
-    },
+    'kevinhwang91/rnvimr',
     config = function ()
-        require('user/plugins/nvim-tree')
-    end,
-    lazy = true
+        require('user/plugins/rnvimr')
+    end
 })
 
-use {'edluffy/hologram.nvim'}
+use({
+    'edluffy/hologram.nvim',
+    config = function()
+      require('user/plugins/hologram')
+    end
+})
 
 use({
     'dstein64/vim-startuptime'

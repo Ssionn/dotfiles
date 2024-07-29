@@ -51,8 +51,6 @@ vim.opt.wildmode = 'longest:full,full'
 vim.opt.title = true
 vim.opt.mouse = 'a'
 
-vim.opt.spell = true
-
 vim.opt.termguicolors = true
 
 vim.opt.updatetime = 300
