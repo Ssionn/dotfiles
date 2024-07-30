@@ -4,6 +4,9 @@ vim.g.mapleader = " "
 -- Quickly clear search highlighting.
 vim.keymap.set('n', '<leader>k', ':nohlsearch<CR>')
 
+-- Close current buffer
+vim.keymap.set('n', '<leader>w', ':bd<CR>', { noremap = true, silent = true })
+
 -- Close all open buffers.
 vim.keymap.set('n', '<leader>Q', ':bufdo bdelete<CR>')
 
@@ -35,9 +38,6 @@ vim.keymap.set('n', '<leader>x', ':!xdg-open %<cr><cr>')
 
 -- Disable annoying command line thing.
 vim.keymap.set('n', 'q:', ':q<CR>')
-
--- Resize with arrows.
-vim.keymap.set('n', '<Space>w', ':Bdelete<CR>', { noremap = true, })
 
 -- Move text up and down
 -- vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')

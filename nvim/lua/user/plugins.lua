@@ -29,26 +29,14 @@ use('tpope/vim-surround')
 use('tpope/vim-unimpaired')
 use('tpope/vim-sleuth')
 use('tpope/vim-repeat')
-use('sheerun/vim-polyglot')
 use('christoomey/vim-tmux-navigator')
-use('farmergreg/vim-lastplace')
+use('ethanholz/nvim-lastplace')
 use('jessarcher/vim-heritage')
-use({
-    'whatyouhide/vim-textobj-xmlattr',
-    requires = 'kana/vim-textobj-user',
-})
 
 use({
     'karb94/neoscroll.nvim',
     config = function()
         require('neoscroll').setup()
-    end,
-})
-
-use({
-    'famiu/bufdelete.nvim',
-    config = function()
-        vim.keymap.set('n', '<Leader>q', 'Bdelete<CR>')
     end,
 })
 
