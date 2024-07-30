@@ -1,5 +1,4 @@
 -- Space is my leader.
--- vim.keymap.set("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 
 -- Quickly clear search highlighting.
@@ -47,15 +46,13 @@ vim.keymap.set('n', '<Space>w', ':Bdelete<CR>', { noremap = true, })
 -- vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
 -- vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv=gv")
 -- vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv=gv")
---
+
 local keyset = vim.keymap.set
 
 keyset("i", "<TAB>", [[coc#pum#visible() ? coc#pum#next(1) : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : "\<TAB>"]], {silent = true, noremap = true, expr = true, replace_keycodes = false})
 keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], {silent = true, noremap = true, expr = true, replace_keycodes = false})
--- keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], {silent = true, noremap = true, expr = true, replace_keycodes = false})
--- keyset("i", "<cr>", [[coc#pum#visible() ? coc#_select_confirm() : "\<CR>"]], {silent = true, noremap = true, expr = true, replace_keycodes = false})
-
 vim.api.nvim_set_keymap("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], {silent = true, noremap = true, expr = true, replace_keycodes = true})
+
 vim.api.nvim_set_keymap("n", "gd", "<Plug>(coc-definition)", {silent = true})
 vim.api.nvim_set_keymap("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
 vim.api.nvim_set_keymap("n", "gi", "<Plug>(coc-implementation)", {silent = true})

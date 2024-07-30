@@ -24,7 +24,6 @@ require('packer').init({
 local use = require('packer').use
 
 use 'wbthomason/packer.nvim'
--- My plugins here
 use('tpope/vim-commentary')
 use('tpope/vim-surround')
 use('tpope/vim-unimpaired')
@@ -82,9 +81,8 @@ use({
    end,
  })
 
--- Telescope with keybinds
 use({
-    'nvim-telescope/telescope.nvim', 
+    'nvim-telescope/telescope.nvim',
     tag = '0.1.x',
     requires = {
         'nvim-lua/plenary.nvim',
@@ -121,25 +119,16 @@ use({
 -- })
 
 use({
-    'kevinhwang91/rnvimr',
+    'lmburns/lf.nvim',
     config = function ()
-        require('user/plugins/rnvimr')
-    end
+        require('user/plugins/lf')
+    end,
+    requires = { "nvim-lua/plenary.nvim", "akinsho/toggleterm.nvim" }
 })
 
 use({
     'dstein64/vim-startuptime'
 })
-
--- choice between lualine and feline.
-
--- use({
---    'nvim-lualine/lualine.nvim',
---    requires = 'kyazdani42/nvim-web-devicons',
---    config = function()
---      require('user/plugins/lualine')
---    end,
---  })
 
 use({
     'feline-nvim/feline.nvim',
@@ -147,14 +136,6 @@ use({
         require('user/plugins/feline')
     end
 })
-
--- use({
---    'akinsho/bufferline.nvim',
---    requires = 'kyazdani42/nvim-web-devicons',
---    config = function()
---      require('user/plugins/bufferline')
---    end,
---  })
 
 use ({
     'romgrk/barbar.nvim',
@@ -243,8 +224,6 @@ use({
    requires = 'tpope/vim-rhubarb',
  })
 
--- Automatically set up your configuration after cloning packer.nvim
--- Put this at the end after all plugins
 if packer_bootstrap then
     require('packer').sync()
 end
