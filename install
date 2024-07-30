@@ -3,22 +3,103 @@
 # This script sets up Neovim and related tools on various Linux distributions, macOS, or WSL.
 # It creates symlinks for config files, runs Neovim package management, and installs dependencies.
 
+set -e
+
 # Get the directory of the script
-DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+create_symlink() {
+  local src=$1
+  local dest=$2
+
+  rm -rf "$dest"
+  ln -s "$src" "$dest"
+  echo "Created symlink: $src -> $dest"
+}
+
+install_package() {
+  local package=$1
+  local install_cmd=$2
+  local verify_cmd=$3
+
+  if eval "$verify_cmd"; then
+    echo "$package is already installed."
+  else
+    echo "Installing $package..."
+    eval "$install_cmd"
+
+    # Verify installation
+    if eval "$verify_cmd"; then
+      echo "$package has been successfully installed."
+    else
+      echo "$package installation may have failed. Please install it manually."
+      exit 1
+    fi
+  fi
+}
+
+run_packer_sync() {
+  echo "Running Packer sync..."
+  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+}
+
+build_telescope_fzf_native() {
+  local dir="$1"
+
+  if [ -d "$dir" ]; then
+    cd "$dir"
+    echo "Entered $dir directory"
+
+    if command -v make &>/dev/null; then
+      if [ -f "Makefile" ]; then
+        if make -q; then
+          echo "Nothing to be done for 'make'. Skipping."
+        else
+          echo "Running make command..."
+          make
+        fi
+      else
+        echo "No Makefile found. Skipping make."
+      fi
+    else
+      echo "Error: 'make' command not found. Please install build essentials."
+    fi
+
+    cd - >/dev/null
+  else
+    echo "Error: $dir directory not found. Make sure the plugin is installed before running this script."
+  fi
+}
+
+run_npm_install() {
+  local dir="$1"
+
+  if [ -d "$dir" ]; then
+    cd "$dir"
+    echo "Entered $dir directory"
+
+    if command -v npm &>/dev/null; then
+      echo "Running npm install..."
+      npm install
+    else
+      echo "Error: npm not found. Please install Node.js and npm."
+      echo "Visit: https://nodejs.org/en/download/"
+      exit 1
+    fi
+
+    cd - >/dev/null
+  else
+    echo "Error: $dir directory not found. Make sure coc.nvim is installed before running this script."
+  fi
+}
 
 # Create symbolic links for various config directories
-rm -rf $HOME/.config/kitty
-ln -s $DOTFILES/kitty $HOME/.config/kitty
-
-rm -rf $HOME/.config/nvim
-ln -s $DOTFILES/nvim $HOME/.config/nvim
-
-rm -rf $HOME/.config/phpactor
-ln -s $DOTFILES/phpactor $HOME/.config/phpactor
+create_symlink "$DOTFILES/kitty" "$HOME/.config/kitty"
+create_symlink "$DOTFILES/nvim" "$HOME/.config/nvim"
+create_symlink "$DOTFILES/phpactor" "$HOME/.config/phpactor"
 
 # Run Packer sync
-echo "Running Packer sync..."
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+run_packer_sync
 
 # Create and enter Packer start folder (where Neovim plugins are installed)
 PACKER_START_DIR="$HOME/.local/share/nvim/site/pack/packer/start"
@@ -26,127 +107,24 @@ mkdir -p "$PACKER_START_DIR"
 cd "$PACKER_START_DIR"
 echo "Entered Packer start folder: $PACKER_START_DIR"
 
-# Enter telescope-fzf-native.nvim folder
-if [ -d "telescope-fzf-native.nvim" ]; then
-    cd telescope-fzf-native.nvim
-    echo "Entered telescope-fzf-native.nvim directory"
-    
-    # Check if make is needed
-    if command -v make &> /dev/null; then
-        if [ -f "Makefile" ]; then
-            if make -q; then
-                echo "Nothing to be done for 'make'. Skipping."
-            else
-                echo "Running make command..."
-                make
-            fi
-        else
-            echo "No Makefile found. Skipping make."
-        fi
-    else
-        echo "Error: 'make' command not found. Please install build essentials."
-    fi
-    
-    # Return to Packer start directory
-    cd "$PACKER_START_DIR"
-else
-    echo "Error: telescope-fzf-native.nvim directory not found."
-    echo "Make sure the plugin is installed before running this script."
-fi
+# Build telescope-fzf-native.nvim if present
+build_telescope_fzf_native "$PACKER_START_DIR/telescope-fzf-native.nvim"
 
-# Check if ripgrep is already installed
-if command -v rg &> /dev/null; then
-    echo "ripgrep is already installed."
-    rg --version
-else
-    # Install ripgrep (verbose)
-    echo "Installing ripgrep..."
-    if command -v apt-get &> /dev/null; then
-        # Debian/Ubuntu
-        sudo apt-get update -y && sudo apt-get install -y ripgrep -V
-    elif command -v brew &> /dev/null; then
-        # macOS with Homebrew
-        brew install ripgrep --verbose
-    elif command -v dnf &> /dev/null; then
-        # Fedora
-        sudo dnf install -y ripgrep -v
-    elif command -v pacman &> /dev/null; then
-        # Arch Linux
-        sudo pacman -S ripgrep --verbose
-    elif command -v zypper &> /dev/null; then
-        # openSUSE
-        sudo zypper install -v ripgrep
-    else
-        echo "Unable to install ripgrep. Please install it manually."
-        echo "Visit: https://github.com/BurntSushi/ripgrep#installation"
-    fi
-    
-    # Verify ripgrep installation
-    if command -v rg &> /dev/null; then
-        echo "ripgrep (rg) has been successfully installed."
-        rg --version
-    else
-        echo "ripgrep installation may have failed. Please install it manually."
-    fi
-fi
+# Check and install ripgrep if not installed
+install_package "ripgrep" \
+  "sudo apt-get update -y && sudo apt-get install -y ripgrep || brew install ripgrep || sudo dnf install -y ripgrep || sudo pacman -S ripgrep --noconfirm || sudo zypper install -y ripgrep" \
+  "command -v rg && rg --version"
 
-# Install LF (file manager)
-if command -v lf &> /dev/null; then
-    echo "lf (file manager) is already installed."
-    lf --version
-else
-    echo "Installing lf (file manager)..."
-    if command -v apt-get &> /dev/null; then
-        # Debian/Ubuntu
-        sudo apt-get update -y && sudo apt-get install -y lf
-    elif command -v brew &> /dev/null; then
-        # macOS with Homebrew
-        brew install lf
-    elif command -v dnf &> /dev/null; then
-        # Fedora
-        sudo dnf install -y lf
-    elif command -v pacman &> /dev/null; then
-        # Arch Linux
-        sudo pacman -S lf
-    elif command -v zypper &> /dev/null; then
-        # openSUSE
-        sudo zypper install -y lf
-    else
-        echo "Unable to install lf. Please install it manually."
-        echo "Visit: https://github.com/gokcehan/lf#installation"
-    fi
+# Check and install LF (file manager) if not installed
+install_package "lf" \
+  "sudo apt-get update -y && sudo apt-get install -y lf || brew install lf || sudo dnf install -y lf || sudo pacman -S lf --noconfirm || sudo zypper install -y lf" \
+  "command -v lf && lf -version"
 
-    # Verify lf installation
-    if command -v lf &> /dev/null; then
-        echo "lf has been successfully installed."
-        lf --version
-    else
-        echo "lf installation may have failed. Please install it manually."
-    fi
-fi
-
-# Navigate back to Packer start folder and enter coc.nvim directory
-echo "Navigating to coc.nvim directory..."
-cd "$PACKER_START_DIR"
-if [ -d "coc.nvim" ]; then
-    cd coc.nvim
-    echo "Entered coc.nvim directory: $(pwd)"
-    
-    # Run npm install (verbose)
-    if command -v npm &> /dev/null; then
-        echo "Running npm install..."
-        npm install --verbose
-    else
-        echo "Error: npm not found. Please install Node.js and npm."
-        echo "Visit: https://nodejs.org/en/download/"
-    fi
-else
-    echo "Error: coc.nvim directory not found in $PACKER_START_DIR"
-    echo "Make sure coc.nvim is installed before running this script."
-fi
+# Run npm install for coc.nvim if present
+run_npm_install "$PACKER_START_DIR/coc.nvim"
 
 # Return to the original directory
 cd "$DOTFILES"
 
-echo "Neovim installation complete. Use 'nvim' to start up neovim."
+echo "Neovim installation complete. Use 'nvim' to start up Neovim."
 
