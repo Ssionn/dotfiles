@@ -1,3 +1,5 @@
+local vim = vim
+
 vim.opt.guifont = "Monaspace Krypton Wide:h15"
 
 vim.opt.signcolumn = 'yes:2'
@@ -14,23 +16,23 @@ vim.opt.smartindent = true
 _G.add_new_line = function()
   local file_name = vim.fn.expand('%:t')
   local file_extension = vim.fn.expand('%:e')
-  
+
   -- List of file extensions to exclude
   local excluded_extensions = {
     'php', 'rs', 'js', 'blade.php', 'lua', 'html', 'env', 'env.example', 'gitignore', 'tsx', 'ts', 'jsx', "json"
   }
-  
+
   -- Check if the file extension is in the excluded list
   for _, ext in ipairs(excluded_extensions) do
     if file_extension == ext or file_name:match("%." .. ext .. "$") then
       return
     end
   end
-  
+
   local n_lines = vim.api.nvim_buf_line_count(0)
   local last_nonblank = vim.fn.prevnonblank(n_lines)
-  if last_nonblank <= n_lines then 
-    vim.api.nvim_buf_set_lines(0, last_nonblank, n_lines, true, { '' }) 
+  if last_nonblank <= n_lines then
+    vim.api.nvim_buf_set_lines(0, last_nonblank, n_lines, true, { '' })
   end
 end
 
@@ -83,12 +85,16 @@ vim.api.nvim_set_hl(0, 'StatusLineNonText', {
 
 vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#2F313C' })
 
-vim.cmd([[
-    :hi      NvimTreeExecFile    guifg=#ffa0a0
-    :hi      NvimTreeSpecialFile guifg=#ffffff gui=underline
-    :hi      NvimTreeSymlink     guifg=White  gui=italic
-    :hi link NvimTreeImageFile   Title
-]])
+-- vim.cmd([[
+--    :hi      NvimTreeExecFile    guifg=#ffa0a0
+--    :hi      NvimTreeSpecialFile guifg=#ffffff gui=underline
+--    :hi      NvimTreeSymlink     guifg=White  gui=italic
+--    :hi link NvimTreeImageFile   Title
+-- ]])
 
 -- Bind Shift+K to show coc.nvim's hover documentation
 vim.api.nvim_set_keymap("n", "K", "<CMD>call CocActionAsync('doHover')<CR>", {silent = true, noremap = true})
+
+vim.cmd[[
+  au FileType php let b:coc_root_patterns = ['.git', '.env', 'composer.json', 'artisan']
+]]

@@ -3,18 +3,23 @@ if not line_ok then
 	return
 end
 
-local one_monokai = {
-	fg = "#abb2bf",
-	bg = "#1e2024",
-	green = "#98c379",
-	yellow = "#e5c07b",
-	purple = "#c678dd",
-	orange = "#d19a66",
-	peanut = "#f6d5a4",
-	red = "#e06c75",
-	aqua = "#61afef",
-	darkblue = "#282c34",
-	dark_red = "#f75f5f",
+-- Updated Rose Pine Dawn color palette (matching barbar)
+local rose_pine_dawn = {
+	fg = "#575279",       -- Text color
+	bg = "#ebe5df",       -- Background color
+	green = "#44BD60",    -- Greenish color
+	yellow = "#f6c177",   -- Yellowish color
+	purple = "#c4a7e7",   -- Purple color
+	orange = "#f5a97f",   -- Orange color
+	peanut = "#f5c2e7",   -- Peanut color
+	red = "#eb6f92",      -- Red color
+	aqua = "#9ccfd8",     -- Aqua color
+	darkblue = "#1f1f28", -- Dark blue color
+	dark_red = "#eb6f92", -- Dark red color
+	inactive_bg = "#f2ede9", -- Inactive background
+	inactive_fg = "#797593", -- Inactive foreground
+	active_fg = "#575279", -- Active foreground
+	fill_bg = "#faf4ed"   -- Fill background
 }
 
 local vi_mode_colors = {
@@ -34,13 +39,12 @@ local c = {
 			name = "vi_mode",
 			opts = {
 				show_mode_name = true,
-				-- padding = "center", -- Uncomment for extra padding.
 			},
 		},
 		hl = function()
 			return {
 				fg = require("feline.providers.vi_mode").get_mode_color(),
-				bg = "darkblue",
+				bg = rose_pine_dawn.bg,
 				style = "bold",
 				name = "NeovimModeHLColor",
 			}
@@ -51,8 +55,8 @@ local c = {
 	gitBranch = {
 		provider = "git_branch",
 		hl = {
-			fg = "peanut",
-			bg = "darkblue",
+			fg = rose_pine_dawn.purple,
+			bg = rose_pine_dawn.bg,
 			style = "bold",
 		},
 		left_sep = "block",
@@ -61,17 +65,8 @@ local c = {
 	gitDiffAdded = {
 		provider = "git_diff_added",
 		hl = {
-			fg = "green",
-			bg = "darkblue",
-		},
-		left_sep = "block",
-		right_sep = "block",
-	},
-	gitDiffRemoved = {
-		provider = "git_diff_removed",
-		hl = {
-			fg = "red",
-			bg = "darkblue",
+			fg = rose_pine_dawn.green,
+			bg = rose_pine_dawn.bg,
 		},
 		left_sep = "block",
 		right_sep = "block",
@@ -79,8 +74,18 @@ local c = {
 	gitDiffChanged = {
 		provider = "git_diff_changed",
 		hl = {
-			fg = "fg",
-			bg = "darkblue",
+			fg = rose_pine_dawn.yellow,
+			bg = rose_pine_dawn.bg,
+		},
+		icon = '±',
+		left_sep = "block",
+		right_sep = "right_filled",
+	},
+	gitDiffRemoved = {
+		provider = "git_diff_removed",
+		hl = {
+			fg = rose_pine_dawn.red,
+			bg = rose_pine_dawn.bg,
 		},
 		left_sep = "block",
 		right_sep = "right_filled",
@@ -92,10 +97,11 @@ local c = {
 		provider = {
 			name = "file_info",
 			opts = {
-				type = "relative-short",
+				type = "unique",
 			},
 		},
 		hl = {
+			fg = rose_pine_dawn.fg,
 			style = "bold",
 		},
 		left_sep = " ",
@@ -104,29 +110,36 @@ local c = {
 	diagnostic_errors = {
 		provider = "diagnostic_errors",
 		hl = {
-			fg = "red",
+			fg = rose_pine_dawn.red,
+			bg = rose_pine_dawn.bg,
 		},
 	},
 	diagnostic_warnings = {
 		provider = "diagnostic_warnings",
 		hl = {
-			fg = "yellow",
+			fg = rose_pine_dawn.yellow,
+			bg = rose_pine_dawn.bg,
 		},
 	},
 	diagnostic_hints = {
 		provider = "diagnostic_hints",
 		hl = {
-			fg = "aqua",
+			fg = rose_pine_dawn.aqua,
+			bg = rose_pine_dawn.bg,
 		},
 	},
 	diagnostic_info = {
 		provider = "diagnostic_info",
+		hl = {
+			fg = rose_pine_dawn.green,
+			bg = rose_pine_dawn.bg,
+		},
 	},
 	lsp_client_names = {
 		provider = "lsp_client_names",
 		hl = {
-			fg = "purple",
-			bg = "darkblue",
+			fg = rose_pine_dawn.purple,
+			bg = rose_pine_dawn.bg,
 			style = "bold",
 		},
 		left_sep = "left_filled",
@@ -141,8 +154,8 @@ local c = {
 			},
 		},
 		hl = {
-			fg = "red",
-			bg = "darkblue",
+			fg = rose_pine_dawn.orange,
+			bg = rose_pine_dawn.bg,
 			style = "bold",
 		},
 		left_sep = "block",
@@ -151,8 +164,8 @@ local c = {
 	file_encoding = {
 		provider = "file_encoding",
 		hl = {
-			fg = "orange",
-			bg = "darkblue",
+			fg = rose_pine_dawn.fg,
+			bg = rose_pine_dawn.bg,
 			style = "italic",
 		},
 		left_sep = "block",
@@ -161,8 +174,8 @@ local c = {
 	position = {
 		provider = "position",
 		hl = {
-			fg = "green",
-			bg = "darkblue",
+			fg = rose_pine_dawn.green,
+			bg = rose_pine_dawn.bg,
 			style = "bold",
 		},
 		left_sep = "block",
@@ -171,8 +184,8 @@ local c = {
 	line_percentage = {
 		provider = "line_percentage",
 		hl = {
-			fg = "aqua",
-			bg = "darkblue",
+			fg = rose_pine_dawn.aqua,
+			bg = rose_pine_dawn.bg,
 			style = "bold",
 		},
 		left_sep = "block",
@@ -181,7 +194,8 @@ local c = {
 	scroll_bar = {
 		provider = "scroll_bar",
 		hl = {
-			fg = "yellow",
+			fg = rose_pine_dawn.yellow,
+			bg = rose_pine_dawn.bg,
 			style = "bold",
 		},
 	},
@@ -191,7 +205,7 @@ local left = {
 	c.vim_mode,
 	c.gitBranch,
 	c.gitDiffAdded,
-  c.gitDiffRemoved,
+	c.gitDiffRemoved,
 	c.gitDiffChanged,
 	c.separator,
 }
@@ -228,6 +242,6 @@ local components = {
 
 feline.setup({
 	components = components,
-	theme = one_monokai,
+	theme = rose_pine_dawn,
 	vi_mode_colors = vi_mode_colors,
 })

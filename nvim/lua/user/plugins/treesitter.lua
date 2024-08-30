@@ -1,3 +1,5 @@
+local vim = vim
+
 require('nvim-treesitter.configs').setup({
    ensure_installed = 'all',
    highlight = {
@@ -11,16 +13,17 @@ require('nvim-treesitter.configs').setup({
 })
 
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+
 parser_config.blade = {
   install_info = {
-    url = "https://github.com/EmranMR/tree-sitter-blade",
-    files = {"src/parser.c"},
+    url = "https://github.com/deanrumsby/tree-sitter-blade",
+    files = { "src/parser.c", "src/scanner.c" },
     branch = "main",
   },
-  filetype = "blade"
+
+  filetype = "blade",
 }
 
--- Set the filetype for *.blade.php files
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   pattern = "*.blade.php",
   callback = function()
