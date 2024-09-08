@@ -1,16 +1,30 @@
+-- Local Vim Variable
 local vim = vim
 
-vim.opt.guifont = "Monaspace Krypton Wide:h15"
+-- 1. Basic Options
+vim.opt.wrap = false
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.title = true
+vim.opt.mouse = 'a'
+vim.opt.termguicolors = true
+vim.opt.updatetime = 300
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.confirm = true
+vim.opt.undofile = true
+vim.opt.backup = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.wildmode = 'longest:full,full'
 
-vim.opt.signcolumn = 'yes:2'
-
-vim.opt.completeopt = 'menuone,longest,preview'
-
+-- 2. Tab and Indentation Settings
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
-
 vim.opt.smartindent = true
 
 _G.add_new_line = function()
@@ -36,6 +50,7 @@ _G.add_new_line = function()
   end
 end
 
+-- 4. Auto Commands
 vim.cmd([[
   augroup CustomSaveActions
     autocmd!
@@ -43,58 +58,35 @@ vim.cmd([[
   augroup END
 ]])
 
-vim.opt.wrap = false
-
-vim.opt.number = true
-vim.opt.relativenumber = true
-
-vim.opt.wildmode = 'longest:full,full'
-
-vim.opt.title = true
-vim.opt.mouse = 'a'
-
-vim.opt.termguicolors = true
-
-vim.opt.updatetime = 300
-
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
+-- 5. Appearance
 vim.opt.list = true
 vim.opt.listchars = { tab = '→ ', trail = '•' }
 vim.opt.fillchars:append({ eob = ' ' })
+vim.opt.signcolumn = 'yes:2'
 
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
-
-vim.opt.confirm = true
-
-vim.opt.undofile = true
-vim.opt.backup = true
-vim.opt.backupdir:remove('.')
-
-vim.g.skip_ts_context_commentstring_module = true
-
+-- Set highlight groups
 vim.api.nvim_set_hl(0, 'StatusLineNonText', {
-    fg = vim.api.nvim_get_hl_by_name('NonText', true).foreground,
-    bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background,
+  fg = vim.api.nvim_get_hl_by_name('NonText', true).foreground,
+  bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background,
 })
 
 vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#2F313C' })
 
--- vim.cmd([[
---    :hi      NvimTreeExecFile    guifg=#ffa0a0
---    :hi      NvimTreeSpecialFile guifg=#ffffff gui=underline
---    :hi      NvimTreeSymlink     guifg=White  gui=italic
---    :hi link NvimTreeImageFile   Title
--- ]])
-
+-- 6. Key Mappings
 -- Bind Shift+K to show coc.nvim's hover documentation
-vim.api.nvim_set_keymap("n", "K", "<CMD>call CocActionAsync('doHover')<CR>", {silent = true, noremap = true})
+vim.api.nvim_set_keymap("n", "K", "<CMD>call CocActionAsync('doHover')<CR>", { silent = true, noremap = true })
 
-vim.cmd[[
+-- 7. Plugin Configurations
+vim.g.skip_ts_context_commentstring_module = true
+
+-- Set up specific configuration for PHP files
+vim.cmd [[
   au FileType php let b:coc_root_patterns = ['.git', '.env', 'composer.json', 'artisan']
 ]]
+
+vim.opt.backupdir:remove('.')
+
+-- Cursor color
+vim.o.guicursor = 'n-v-c:block-Cursor/lCursor,i:ver25-CursorInsert/lCursorInsert'
+vim.api.nvim_set_hl(0, 'Cursor', { fg = 'black', bg = 'orange' })
+vim.api.nvim_set_hl(0, 'CursorInsert', { fg = 'black', bg = 'orange' })

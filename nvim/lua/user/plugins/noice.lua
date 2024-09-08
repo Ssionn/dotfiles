@@ -29,7 +29,7 @@ require("noice").setup({
     notify = {
       position = {
         row = "10%",
-        col = "50%",
+        col = "30%",
         anchor = "center",
       },
       size = {

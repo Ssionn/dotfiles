@@ -8,21 +8,21 @@ require('barbar').setup({
     buffer_number = false,
     button = '',
     diagnostics = {
-      [vim.diagnostic.severity.ERROR] = {enabled = true, icon = '✘'},
-      [vim.diagnostic.severity.WARN] = {enabled = true, icon = '>>'},
-      [vim.diagnostic.severity.INFO] = {enabled = true, icon = ''},
-      [vim.diagnostic.severity.HINT] = {enabled = true, icon = ''},
+      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = '✘' },
+      [vim.diagnostic.severity.WARN] = { enabled = true, icon = '>>' },
+      [vim.diagnostic.severity.INFO] = { enabled = true, icon = '' },
+      [vim.diagnostic.severity.HINT] = { enabled = true, icon = '' },
     },
     gitsigns = {
-      added = {enabled = true, icon = '+'},
-      changed = {enabled = true, icon = '±'},
-      deleted = {enabled = true, icon = '-'},
+      added = { enabled = true, icon = '+' },
+      changed = { enabled = true, icon = '±' },
+      deleted = { enabled = true, icon = '-' },
     },
     filetype = {
       enabled = true,
       custom_colors = false,
     },
-    separator = {left = '▎', right = ''},
+    separator = { left = '▎', right = '' },
     separator_style = "thin",
   },
   maximum_padding = 0,
@@ -36,21 +36,21 @@ vim.keymap.set('n', '<Tab>', '<Cmd>BufferNext<CR>', { noremap = true, silent = t
 vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', { noremap = true, silent = true })
 
 local rose_pine_dawn = {
-    fg = "#575279",
-    bg = "#ebe5df",  -- Active buffer background
-    green = "#9ccfd8",
-    yellow = "#f6c177",
-    purple = "#c4a7e7",
-    orange = "#f5a97f",
-    peanut = "#f5c2e7",
-    red = "#eb6f92",
-    aqua = "#9ccfd8",
-    darkblue = "#1f1f28",
-    dark_red = "#eb6f92",
-    inactive_bg = "#f2ede9",
-    inactive_fg = "#797593",
-    active_fg = "#575279",  -- Darker text for active buffer
-    fill_bg = "#faf4ed"     -- Light background for empty space
+  fg = "#575279",
+  bg = "#ebe5df",   -- Active buffer background
+  green = "#9ccfd8",
+  yellow = "#f6c177",
+  purple = "#c4a7e7",
+  orange = "#f5a97f",
+  peanut = "#f5c2e7",
+  red = "#eb6f92",
+  aqua = "#9ccfd8",
+  darkblue = "#1f1f28",
+  dark_red = "#eb6f92",
+  inactive_bg = "#f2ede9",
+  inactive_fg = "#797593",
+  active_fg = "#575279",   -- Darker text for active buffer
+  fill_bg = "#faf4ed"      -- Light background for empty space
 }
 
 -- Define highlight groups for barbar
@@ -85,5 +85,5 @@ vim.api.nvim_set_hl(0, 'BufferIconTarget', { fg = rose_pine_dawn.red, bg = rose_
 vim.api.nvim_set_hl(0, 'BufferIconInactive', { fg = rose_pine_dawn.inactive_fg, bg = rose_pine_dawn.inactive_bg })
 vim.api.nvim_set_hl(0, 'BufferIconInactiveMod', { fg = rose_pine_dawn.inactive_fg, bg = rose_pine_dawn.inactive_bg })
 vim.api.nvim_set_hl(0, 'BufferIconInactiveSign', { fg = rose_pine_dawn.inactive_fg, bg = rose_pine_dawn.inactive_bg })
-vim.api.nvim_set_hl(0, 'BufferIconInactiveTarget', { fg = rose_pine_dawn.inactive_fg, bg = rose_pine_dawn.inactive_bg, bold = true })
-
+vim.api.nvim_set_hl(0, 'BufferIconInactiveTarget',
+  { fg = rose_pine_dawn.inactive_fg, bg = rose_pine_dawn.inactive_bg, bold = true })

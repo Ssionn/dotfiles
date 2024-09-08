@@ -68,6 +68,7 @@ local c = {
 			fg = rose_pine_dawn.green,
 			bg = rose_pine_dawn.bg,
 		},
+		icon = "+",
 		left_sep = "block",
 		right_sep = "block",
 	},
@@ -87,6 +88,7 @@ local c = {
 			fg = rose_pine_dawn.red,
 			bg = rose_pine_dawn.bg,
 		},
+		icon = "-",
 		left_sep = "block",
 		right_sep = "right_filled",
 	},
@@ -97,7 +99,7 @@ local c = {
 		provider = {
 			name = "file_info",
 			opts = {
-				type = "unique",
+				type = "full_path",
 			},
 		},
 		hl = {

@@ -1,3 +1,4 @@
+-- Ensure Packer is installed
 local ensure_packer = function()
     local fn = vim.fn
     local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -23,7 +24,10 @@ require('packer').init({
 
 local use = require('packer').use
 
+-- Packer can manage itself
 use 'wbthomason/packer.nvim'
+
+-- Utility Plugins
 use('tpope/vim-commentary')
 use('tpope/vim-surround')
 use('tpope/vim-unimpaired')
@@ -33,6 +37,7 @@ use('christoomey/vim-tmux-navigator')
 use('ethanholz/nvim-lastplace')
 use('jessarcher/vim-heritage')
 
+-- Neoscroll for smooth scrolling
 use({
     'karb94/neoscroll.nvim',
     config = function()
@@ -40,6 +45,7 @@ use({
     end,
 })
 
+-- Splitjoin for switching between single-line and multiline code
 use({
     'AndrewRadev/splitjoin.vim',
     config = function()
@@ -49,6 +55,7 @@ use({
     end,
 })
 
+-- Vim Pasta for better paste behavior
 use({
     'sickill/vim-pasta',
     config = function()
@@ -56,6 +63,7 @@ use({
     end,
 })
 
+-- Treesitter for syntax highlighting and more
 use({
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -69,6 +77,7 @@ use({
     end,
 })
 
+-- Telescope for fuzzy finding and more
 use({
     'nvim-telescope/telescope.nvim',
     tag = '0.1.x',
@@ -84,6 +93,7 @@ use({
     end,
 })
 
+-- Noice for enhancing UI messages
 use({
     'folke/noice.nvim',
     config = function()
@@ -95,17 +105,7 @@ use({
     }
 })
 
--- use({
---     'kyazdani42/nvim-tree.lua',
---     requires = {
---         'kyazdani42/nvim-web-devicons',
---     },
---     config = function ()
---         require('user/plugins/nvim-tree')
---     end,
---     lazy = true
--- })
-
+-- LF File Manager Integration
 use({
     'lmburns/lf.nvim',
     config = function()
@@ -114,10 +114,12 @@ use({
     requires = { "nvim-lua/plenary.nvim", "akinsho/toggleterm.nvim" }
 })
 
+-- Vim Startup Time
 use({
     'dstein64/vim-startuptime'
 })
 
+-- Feline Status Line
 use({
     'feline-nvim/feline.nvim',
     config = function()
@@ -125,6 +127,7 @@ use({
     end
 })
 
+-- Barbar Bufferline
 use({
     'romgrk/barbar.nvim',
     config = function()
@@ -132,39 +135,20 @@ use({
     end
 })
 
--- use this if you want the onedark theme.
-
--- use({
---   'jessarcher/onedark.nvim',
---   config = function()
---     vim.cmd('colorscheme onedark')
-
---     vim.api.nvim_set_hl(0, 'FloatBorder', {
---       fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
---       bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
---     })
---   end,
--- })
-
+-- Theme: Rose Pine
 use({
     'rose-pine/neovim',
     config = function()
         require('rose-pine').setup({
             variant = 'dawn',
             dark_variant = 'moon',
-
-            -- palette = {
-            --     dawn = {
-            --         base = '#f0f4f8', -- Slightly darker than the original dawn base color
-            --         overlay = '#e5e9f0', -- Slightly darker overlay
-            --     },
-            -- },
         })
 
         vim.cmd('colorscheme rose-pine')
     end
 })
 
+-- Blame Line Plugin
 use({
     "FabijanZulj/blame.nvim",
     config = function()
@@ -172,16 +156,19 @@ use({
     end
 })
 
+-- Neoformat for code formatting
 use({
     'sbdchd/neoformat',
 })
 
+-- Coc.nvim for LSP and completion
 use {
     'neoclide/coc.nvim',
     branch = 'master',
     run = 'npm ci',
     config = function()
         vim.g.coc_global_extensions = {
+            'coc-html',
             'coc-json',
             '@yaegassy/coc-intelephense',
             'coc-blade',
@@ -190,6 +177,7 @@ use {
     end
 }
 
+-- PHP Actor for PHP development
 use({
     'phpactor/phpactor',
     ft = 'php',
@@ -200,30 +188,27 @@ use({
     end,
 })
 
--- Git integration.
+-- Git Integration with Gitsigns
 use({
     'lewis6991/gitsigns.nvim',
     config = function()
         require('gitsigns').setup()
-        vim.keymap.set('n', ']h', ':Gitsigns next_hunk<CR>')
-        vim.keymap.set('n', '[h', ':Gitsigns prev_hunk<CR>')
-        vim.keymap.set('n', 'gs', ':Gitsigns stage_hunk<CR>')
-        vim.keymap.set('n', 'gS', ':Gitsigns undo_stage_hunk<CR>')
-        vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>')
-        vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>')
     end,
 })
 
--- Git commands.
+
+-- Git Commands with Fugitive
 use({
     'tpope/vim-fugitive',
     requires = 'tpope/vim-rhubarb',
 })
 
+-- Sync Packer if it was just installed
 if packer_bootstrap then
     require('packer').sync()
 end
 
+-- Auto Commands for Packer
 vim.cmd([[
     augroup packer_user_config
     autocmd!
