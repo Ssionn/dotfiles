@@ -62,3 +62,6 @@ keyset('n', '<leader>p', ":call CocAction('format')<CR>", { noremap = true, sile
 
 -- Blame the other person simulator
 keyset('n', '<leader>bl', ":Blame<CR>", { noremap = true, silent = true })
+
+-- Keybind for workspace output
+keyset('n', '<leader>wo', ":CocCommand workspace.showOutput<CR>", { noremap = true, silent = true })

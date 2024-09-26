@@ -84,12 +84,11 @@ vim.cmd [[
   au FileType php let b:coc_root_patterns = ['.git', '.env', 'composer.json', 'artisan']
 ]]
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "pug",
-  callback = function()
-    vim.b.coc_filetype_map = { pug = "jade" }
-  end
-})
+vim.cmd [[
+  au FileType pug let b:coc_filetype_map = {
+    'pug': 'jade',
+  }
+]]
 
 vim.opt.backupdir:remove('.')
 

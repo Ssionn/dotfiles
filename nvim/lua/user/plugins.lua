@@ -63,6 +63,13 @@ use({
     end,
 })
 
+use({
+    'jiriks74/presence.nvim',
+    config = function()
+        require('user/plugins/presence')
+    end,
+})
+
 -- Treesitter for syntax highlighting and more
 use({
     'nvim-treesitter/nvim-treesitter',
