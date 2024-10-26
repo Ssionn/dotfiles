@@ -127,12 +127,24 @@ use({
 })
 
 -- Feline Status Line
+-- use({
+--     'feline-nvim/feline.nvim',
+--     config = function()
+--         require('user/plugins/feline')
+--     end
+-- })
+
 use({
-    'feline-nvim/feline.nvim',
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true };
     config = function()
-        require('user/plugins/feline')
+        require('lualine').setup({
+            options = {
+                theme = 'onedark'
+            }
+        });
     end
-})
+});
 
 -- Barbar Bufferline
 use({
@@ -143,15 +155,32 @@ use({
 })
 
 -- Theme: Rose Pine
-use({
-    'rose-pine/neovim',
-    config = function()
-        require('rose-pine').setup({
-            variant = 'dawn',
-            dark_variant = 'moon',
-        })
+-- use({
+--     'rose-pine/neovim',
+--     config = function()
+--         require('rose-pine').setup({
+--             variant = 'dawn',
+--             dark_variant = 'moon',
+--         })
 
-        vim.cmd('colorscheme rose-pine')
+--         vim.cmd('colorscheme rose-pine')
+--     end
+-- })
+
+use({
+    'navarasu/onedark.nvim',
+    config = function()
+        require("onedark").setup({
+            style = 'warm',
+
+            code_style = {
+                comments = 'italic',
+                keywords = 'none',
+                functions = 'none',
+                strings = 'none',
+                variables = 'none'
+            },
+        });
     end
 })
 

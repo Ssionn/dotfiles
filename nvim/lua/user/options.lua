@@ -74,7 +74,7 @@ vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#2F313C' })
 
 -- 6. Key Mappings
 -- Bind Shift+K to show coc.nvim's hover documentation
-vim.api.nvim_set_keymap("n", "K", "<CMD>call CocActionAsync('doHover')<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "df", "<CMD>call CocActionAsync('doHover')<CR>", { silent = true, noremap = true })
 
 -- 7. Plugin Configurations
 vim.g.skip_ts_context_commentstring_module = true
@@ -97,3 +97,5 @@ vim.opt.backupdir:remove('.')
 vim.o.guicursor = 'n-v-c:block-Cursor/lCursor,i:ver25-CursorInsert/lCursorInsert'
 vim.api.nvim_set_hl(0, 'Cursor', { fg = 'black', bg = 'orange' })
 vim.api.nvim_set_hl(0, 'CursorInsert', { fg = 'black', bg = 'orange' })
+
+vim.cmd("colorscheme onedark")
