@@ -1,5 +1,7 @@
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
+local vim = vim
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 require('user/options')
 require('user/plugins')
@@ -11,4 +13,3 @@ vim.cmd [[
   highlight CocErrorFloat guibg=#191724 guifg=#eb6f92
   highlight CocErrorMsg guifg=#eb6f92
 ]]
-

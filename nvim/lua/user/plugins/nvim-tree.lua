@@ -1,6 +1,5 @@
 require("nvim-tree").setup({
   auto_reload_on_write = true,
-  disable_netrw = false,
   hijack_netrw = true,
   open_on_tab = false,
   hijack_cursor = false,
@@ -33,7 +32,7 @@ require("nvim-tree").setup({
 },
   filters = {
     dotfiles = false,
-  }, 
+  }
 })
 
 vim.keymap.set('n', '<Space>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })

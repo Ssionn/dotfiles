@@ -8,8 +8,8 @@ local keyset = vim.keymap.set
 keyset('n', '<leader>k', ':nohlsearch<CR>')
 
 -- Buffer management
-keyset('n', '<leader>w', ':bd<CR>', { noremap = true, silent = true }) -- Close current buffer
-keyset('n', '<leader>Q', ':bufdo bdelete<CR>')                         -- Close all buffers
+keyset('n', '<leader>w', ':bd<CR>', { noremap = true, silent = true })            -- Close current buffer
+keyset('n', '<leader>q', ':bufdo bdelete<CR>', { noremap = true, silent = true }) -- Close all buffers
 
 -- File handling
 keyset('', 'gf', ':edit <cfile><CR>')            -- Allow gf to open non-existent files
@@ -65,3 +65,7 @@ keyset('n', '<leader>bl', ":Blame<CR>", { noremap = true, silent = true })
 
 -- Keybind for workspace output
 keyset('n', '<leader>wo', ":CocCommand workspace.showOutput<CR>", { noremap = true, silent = true })
+
+-- Keybind for Markdown preview
+keyset('n', '<leader>md', ":MarkdownPreview<CR>", { noremap = true, silent = true })
+keyset('n', '<leader>ms', ":MarkdownPreviewStop<CR>", { noremap = true, silent = true })

@@ -70,6 +70,41 @@ use({
     end,
 })
 
+use({
+    'nvim-tree/nvim-tree.lua',
+    config = function()
+        require('user/plugins/nvim-tree')
+    end
+})
+
+use({
+    "iamcco/markdown-preview.nvim",
+})
+
+use({
+    "folke/twilight.nvim"
+})
+
+use({
+    "brenoprata10/nvim-highlight-colors",
+    config = function()
+        require("nvim-highlight-colors").setup({
+            enable_tailwind = true
+        })
+    end
+})
+
+use({
+    "utilyre/barbecue.nvim",
+    tag = "*",
+    requires = {
+        "SmiteshP/nvim-navic",
+    },
+    config = function()
+        require("barbecue").setup()
+    end,
+})
+
 -- Treesitter for syntax highlighting and more
 use({
     'nvim-treesitter/nvim-treesitter',
@@ -100,26 +135,43 @@ use({
     end,
 })
 
--- Noice for enhancing UI messages
 use({
-    'folke/noice.nvim',
+    "supermaven-inc/supermaven-nvim",
     config = function()
-        require('user/plugins/noice')
+        require('user/plugins/supermaven')
     end,
-    requires = {
-        "MunifTanjim/nui.nvim",
-        "rcarriga/nvim-notify",
-    }
 })
 
--- LF File Manager Integration
 use({
-    'lmburns/lf.nvim',
-    config = function()
-        require('user/plugins/lf')
-    end,
-    requires = { "nvim-lua/plenary.nvim", "akinsho/toggleterm.nvim" }
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+        formatters_by_ft = {
+            php = { { "pint", "php_cs_fixer" } },
+        },
+    },
 })
+
+-- Noice for enhancing UI messages
+-- use({
+--     'folke/noice.nvim',
+--     config = function()
+--         require('user/plugins/noice')
+--     end,
+--     requires = {
+--         "MunifTanjim/nui.nvim",
+--         "rcarriga/nvim-notify",
+--     }
+-- })
+
+-- LF File Manager Integration
+-- use({
+--     'lmburns/lf.nvim',
+--     config = function()
+--         require('user/plugins/lf')
+--     end,
+--     requires = { "nvim-lua/plenary.nvim", "akinsho/toggleterm.nvim" }
+-- })
 
 -- Vim Startup Time
 use({
@@ -136,15 +188,18 @@ use({
 
 use({
     'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true };
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
     config = function()
-        require('lualine').setup({
-            options = {
-                theme = 'onedark'
-            }
-        });
+        require('user/plugins/lualine')
     end
 });
+
+use({
+    "rebelot/kanagawa.nvim",
+    config = function()
+        require('user/plugins/kanagawa')
+    end
+})
 
 -- Barbar Bufferline
 use({
@@ -167,22 +222,22 @@ use({
 --     end
 -- })
 
-use({
-    'navarasu/onedark.nvim',
-    config = function()
-        require("onedark").setup({
-            style = 'warm',
+-- use({
+--     'navarasu/onedark.nvim',
+--     config = function()
+--         require("onedark").setup({
+--             style = 'warm',
 
-            code_style = {
-                comments = 'italic',
-                keywords = 'none',
-                functions = 'none',
-                strings = 'none',
-                variables = 'none'
-            },
-        });
-    end
-})
+--             code_style = {
+--                 comments = 'italic',
+--                 keywords = 'none',
+--                 functions = 'none',
+--                 strings = 'none',
+--                 variables = 'none'
+--             },
+--         });
+--     end
+-- })
 
 -- Blame Line Plugin
 use({
@@ -228,7 +283,8 @@ use({
 use({
     'lewis6991/gitsigns.nvim',
     config = function()
-        require('gitsigns').setup()
+        require('gitsigns').setup({
+        })
     end,
 })
 

@@ -1,33 +1,30 @@
 {
   "hover.floatConfig": {
-    "border": true,
-    "rounded": true,
     "highlight": "CocFloating",
+    "rounded": true
   },
-
   "suggest.floatConfig": {
-    "border": true,
-    "rounded": true,
     "highlight": "CocPmenu",
     "borderhighlight": "CocPmenuSel",
-    "winblend": 0
+    "winblend": 0,
+    "rounded": true
   },
-
   "diagnostic.floatConfig": {
-    "border": true,
-    "rounded": true,
     "highlight": "CocErrorFloat",
     "borderhighlight": "CocErrorMsg",
-    "winblend": 10
+    "winblend": 10,
+    "rounded": true
   },
-
-  "suggest.formatItems": [ "kind", "abbr", "menu", "shortcut" ],
+  "suggest.formatItems": [
+    "kind",
+    "abbr",
+    "menu",
+    "shortcut"
+  ],
   "coc.preferences.silentAutoupdate": true,
   "coc.preferences.enableMarkdown": true,
   "outline.previewMaxWidth": 100,
-
   "html.hover.documentation": true,
-
   "intelephense.telemetry.enabled": false,
   "intelephense.completion.triggerParameterHints": true,
   "intelephense.enable": true,
@@ -35,9 +32,10 @@
   "intelephense.format.braces": "per",
   "intelephense.phpdoc.textFormat": "snippet",
   "intelephense.environment.shortOpenTag": true,
-
   "blade.completion.enableSnippets": true,
-
   "snippets.ultisnips.pythonPrompt": false,
+  "[php]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "php-cs-fixer.activateTool": "php-cs-fixer"
 }
-

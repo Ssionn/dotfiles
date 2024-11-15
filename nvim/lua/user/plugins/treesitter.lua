@@ -30,3 +30,6 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     vim.bo.filetype = "blade"
   end
 })
+
+vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = '#16161D' })
+vim.api.nvim_set_hl(0, 'TreesitterContextLineNumber', { fg = '#54546D', bg = '#16161D' })

@@ -98,4 +98,4 @@ vim.o.guicursor = 'n-v-c:block-Cursor/lCursor,i:ver25-CursorInsert/lCursorInsert
 vim.api.nvim_set_hl(0, 'Cursor', { fg = 'black', bg = 'orange' })
 vim.api.nvim_set_hl(0, 'CursorInsert', { fg = 'black', bg = 'orange' })
 
-vim.cmd("colorscheme onedark")
+vim.cmd("colorscheme kanagawa-wave")

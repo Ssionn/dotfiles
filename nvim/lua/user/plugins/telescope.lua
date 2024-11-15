@@ -6,30 +6,21 @@ local builtin = require('telescope.builtin')
 -- Telescope setup
 telescope.setup({
     defaults = {
-        preview = false,
         prompt_prefix = ' 🔍 ',
         selection_caret = ' ⮕  ',
-        layout_strategy = 'center',
-        layout_config = {
-          horizontal = {
-            width = 0.5,
-            height = 1,
-            preview_width = 0.75,
-          },
-        },
+        layout_strategy = 'horizontal',
         winblend = 10,
         file_ignore_patterns = { "./vendor/", "vendor/", "^vendor/", ".git/", "/.git/", "^.git/", "public/", "/public/", "^public/", "%.svg" },
         sorting_strategy = 'ascending',
     },
     pickers = {
         find_files = {
-            files = true,
-            hidden = true,
+            theme = 'dropdown',
         },
         buffers = {
-            previewer = false,
+            previewer = true,
             layout_config = {
-                width = 120,
+                width = 1,
             },
         },
     },
@@ -44,7 +35,7 @@ telescope.setup({
 })
 
 require('telescope').load_extension('fzf')
-require('telescope').load_extension('noice')
+-- require('telescope').load_extension('noice')
 
 vim.api.nvim_set_keymap('n', '<Space>ff', ':lua require("telescope.builtin").find_files{}<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Space>fg', ':lua require("telescope.builtin").live_grep{}<CR>', { noremap = true, silent = true })
